@@ -2,9 +2,16 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
+ * Question
+ *
+ * @ApiResource()
+ * @ORM\Table("question")
  * @ORM\Entity(repositoryClass="App\Repository\QuestionRepository")
  */
 class Question
@@ -17,17 +24,22 @@ class Question
     private $id;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $text;
 
     /**
      * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="Response")
+     * @ORM\JoinColumn(name="response_id", referencedColumnName="id")
      */
     private $response;
 
     /**
      * @ORM\Column(type="json_array", nullable=true)
+     * @ORM\OneToMany(targetEntity="Response", mappedBy="question", cascade={"persist", "remove"})
      */
     private $responses;
 
@@ -45,6 +57,11 @@ class Question
      * @ORM\Column(type="datetime")
      */
     private $date;
+
+    public function __construct()
+    {
+        $this->date = new \DateTime();
+    }
 
     public function getId()
     {
