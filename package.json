@@ -10,5 +10,11 @@
         "watch": "encore dev --watch",
         "build": "encore production",
         "start": "react-scripts start"
+    },
+    "dependencies": {
+        "axios": "^0.18.0",
+        "react": "^16.3.2",
+        "react-dom": "^16.3.2",
+        "react-scripts": "1.1.4"
     }
 }
