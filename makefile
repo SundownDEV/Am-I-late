@@ -18,3 +18,6 @@ front-build:
 
 front-build-prod:
 	./node_modules/.bin/encore production
+
+front-start:
+	npm start
