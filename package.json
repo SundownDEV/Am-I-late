@@ -9,7 +9,7 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production",
-        "start": "react-scripts start"
+        "start": "cd app && node ../node_modules/react-scripts/scripts/start.js"
     },
     "dependencies": {
         "axios": "^0.18.0",
