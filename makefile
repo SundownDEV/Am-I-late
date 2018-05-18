@@ -5,19 +5,19 @@ install:
 	npm install;
 
 api-start:
-	bin/console server:start;
+	bin/console server:start *:3000;
 
 api-stop:
 	bin/console server:stop;
 
 front-watch:
-	./node_modules/.bin/encore dev --watch
+	./node_modules/.bin/encore dev --watch;
 
 front-build:
-	./node_modules/.bin/encore dev
+	./node_modules/.bin/encore dev;
 
 front-build-prod:
-	./node_modules/.bin/encore production
+	./node_modules/.bin/encore production;
 
-front-start:
-	npm start
+front-run:
+	cd client && npm start;

@@ -1,0 +1,20 @@
+{
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "build": "react-scripts build",
+    "start": "PORT=8000 react-scripts start"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-scripts": "1.1.4"
+  }
+}
