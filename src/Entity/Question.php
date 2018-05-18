@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -31,15 +33,17 @@ class Question
     private $text;
 
     /**
-     * @ORM\Column(type="integer")
+     * @var Collection<Service>
+     *
      * @ORM\ManyToOne(targetEntity="Response")
      * @ORM\JoinColumn(name="response_id", referencedColumnName="id")
+     * @ApiSubresource()
      */
     private $response;
 
     /**
-     * @ORM\Column(type="json_array", nullable=true)
      * @ORM\OneToMany(targetEntity="Response", mappedBy="question", cascade={"persist", "remove"})
+     * @ApiSubresource()
      */
     private $responses;
 
