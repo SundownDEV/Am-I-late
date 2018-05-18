@@ -30,9 +30,9 @@ class Response
     private $text;
 
     /**
-     * @ORM\Column(type="integer")
      * @ORM\ManyToOne(targetEntity="Question", inversedBy="reponses", cascade={"persist"})
-     * @ORM\JoinColumn(name="question_id", referencedColumnName="id", onDelete="SET NULL")
+     * @ORM\JoinColumn(name="id", referencedColumnName="id", onDelete="SET NULL")
+     * @ApiSubresource()
      */
     private $question;
 

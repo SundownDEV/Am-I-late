@@ -35,14 +35,18 @@ class Question
     /**
      * @var Collection<Service>
      *
+     * @ORM\JoinColumn(nullable=true)
      * @ORM\ManyToOne(targetEntity="Response")
-     * @ORM\JoinColumn(name="response_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="id", referencedColumnName="id")
      * @ApiSubresource()
      */
     private $response;
 
     /**
-     * @ORM\OneToMany(targetEntity="Response", mappedBy="question", cascade={"persist", "remove"})
+     * @var Collection<Service>
+     *
+     * @ORM\OneToMany(targetEntity="Response", mappedBy="id")
+     * @ORM\JoinColumn(name="id", referencedColumnName="id")
      * @ApiSubresource()
      */
     private $responses;
@@ -84,12 +88,12 @@ class Question
         return $this;
     }
 
-    public function getResponse(): ?int
+    public function getResponse()
     {
         return $this->response;
     }
 
-    public function setResponse(int $response): self
+    public function setResponse($response): self
     {
         $this->response = $response;
 
