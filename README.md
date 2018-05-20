@@ -10,6 +10,8 @@ Rise and shine, 9 AM and your hand can't make it to the alarm clock before the v
 
 You have to get into the class **before** 10 AM. Welcome to the grind.
 
+<p align="center"><img src="./docs/plan.jpeg" /></p>
+
 ## Installation
 
 ~~~
