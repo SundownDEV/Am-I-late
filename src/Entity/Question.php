@@ -39,12 +39,6 @@ class Question
      */
     private $responses;
 
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Response", mappedBy="child", cascade={"persist", "remove"})
-     * @ApiSubresource()
-     */
-    private $response;
-
     public function __construct()
     {
         $this->responses = new ArrayCollection();
@@ -107,25 +101,6 @@ class Question
                 $response->setQuestion(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getResponse(): ?Response
-    {
-        return $this->response;
-    }
-
-    public function setResponse(?Response $response): self
-    {
-        $this->response = $response;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newChild = $response === null ? null : $this;
-
-        /*if ($newChild !== $response->getChild()) {
-            $response->setChild($newChild);
-        }*/
 
         return $this;
     }

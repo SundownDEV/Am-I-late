@@ -33,7 +33,7 @@ class Response
     private $question;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Question", inversedBy="response", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Question", cascade={"persist", "remove"})
      */
     private $child;
 
