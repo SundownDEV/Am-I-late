@@ -8,9 +8,13 @@ use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Annotation\ApiSubresource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(attributes={
+ *     "normalization_context"={"groups"={"test"}},
+ *     "denormalization_context"={"groups"={"write"}}
+ * })
  * @ORM\Table(name="question")
  * @ORM\Entity(repositoryClass="App\Repository\QuestionRepository")
  */
@@ -24,7 +28,7 @@ class Question
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $text;
 
@@ -35,7 +39,9 @@ class Question
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Response", mappedBy="question")
+     * @ORM\JoinTable(name="response")
      * @ApiSubresource()
+     * @Groups("test")
      */
     private $responses;
 
