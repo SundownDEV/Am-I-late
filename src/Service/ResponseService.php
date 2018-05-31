@@ -11,7 +11,7 @@ namespace App\Service;
 use App\Entity\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class ResponsesService extends Controller
+class ResponseService
 {
     //private $object;
     private $response;
