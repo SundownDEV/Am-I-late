@@ -6,15 +6,18 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\ORM\Query;
 use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 use Symfony\Component\Serializer\Annotation\Groups;
 
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+
 /**
- * @ApiResource(attributes={
- *     "normalization_context"={"groups"={"test"}},
- *     "denormalization_context"={"groups"={"write"}}
- * })
+ * @ApiResource()
  * @ORM\Table(name="question")
  * @ORM\Entity(repositoryClass="App\Repository\QuestionRepository")
  */
@@ -41,14 +44,21 @@ class Question
      * @ORM\OneToMany(targetEntity="App\Entity\Response", mappedBy="question")
      * @ORM\JoinTable(name="response")
      * @ApiSubresource()
-     * @Groups("test")
      */
     private $responses;
 
-    public function __construct()
+    public function __construct(TestSerializer $testSerializer)
     {
         $this->responses = new ArrayCollection();
         $this->date = new \DateTime();
+        $this->testSerializer = $testSerializer;
+    }
+
+    public function __invoke(Question $question): Question
+    {
+        $this->testSerializer->test();
+
+        return $question;
     }
 
     public function getId()

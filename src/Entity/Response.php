@@ -29,11 +29,13 @@ class Response
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Question", inversedBy="responses")
+     * @ORM\JoinTable(name="question")
      */
     private $question;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Question", cascade={"persist", "remove"})
+     * @ORM\JoinTable(name="question")
      */
     private $child;
 
