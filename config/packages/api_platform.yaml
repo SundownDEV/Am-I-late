@@ -182,3 +182,5 @@ api_platform:
             mime_types: ['application/ld+json']
 
         # ...
+framework:
+    serializer: { enable_annotations: true }
