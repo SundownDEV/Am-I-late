@@ -7,16 +7,24 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentOptionsState: [],
+      currentOptionsState: ["test"],
       pastOptions: [],
       score: 0
     }
   }
 
+  _handleClick(element) {
+      this.setState(prevState => ({
+          pastOptions: [...prevState.pastOptions, element]
+      }))
+  }
+
   fetchOptions() {
     axios.get('https://jsonplaceholder.typicode.com/posts/1')
-    .then(((response) => {
-      console.log(response)
+    .then(((t) => {
+        this.setState(prevState => ({
+            currentOptionsState: [...prevState.currentOptionsState, t.data.title]
+        }))
     }))
   }
 
@@ -26,15 +34,15 @@ class App extends Component {
 
   headerRendering() {
 
-    let headerPast = []
+    let headerPast = [];
 
     for(let i = 0; i<this.state.pastOptions-1; i++) {
       headerPast.push (
         <div className="headerPast">
-        <h3 class="currentOption">
+        <h3 className="currentOption">
         {this.state.pastOptions[i]}
       </h3>
-      <h4 class="currentOption">
+      <h4 className="currentOption">
       {this.state.pastOptions[i+1]}
       </h4>
       </div>
@@ -45,22 +53,24 @@ class App extends Component {
 
 
   render() {
-    let currentOptions = this.state.currentOptionsState.map(((element) => (
-        <h3 class="currentOption">
+    let currentOptions = this.state.currentOptionsState.map(((element, index) => (
+        <div key={index} className="currentOption btn btn-default btn-lg btn-block text-left" onClick={this._handleClick.bind(this, element)}>
+        <h3 className="currentOption_element">
           {element}
         </h3>
-    )))
+        </div>
+    )));
   
     return (
-      <div className="App">
-        <header className="App-header">
+      <div className="App container">
+        <header className="App_header">
         {this.state.pastOptions ? this.headerRendering() : null}
 
         </header>
-        <div className="currentSection">
-          <h1 className="currentState"></h1>
+        <div className="currentSection vertical-center container">
+          <h1 className="currentState">{}</h1>
           <h2 className="currentQuestion">Je fais quoi ?</h2>
-          <div class="currentOptions">
+          <div className="currentOptions">
             {this.state.currentOptionsState ? currentOptions : null}
           </div>
       </div>
