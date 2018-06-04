@@ -9,7 +9,7 @@
     "private": true,
     "scripts": {
       "build": "react-scripts build",
-      "start": "cd client && node ../node_modules/react-scripts/scripts/start.js"
+      "start": "node node_modules/react-scripts/scripts/start.js"
     },
     "dependencies": {
       "axios": "^0.18.0",

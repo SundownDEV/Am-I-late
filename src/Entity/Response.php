@@ -9,8 +9,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 
 /**
- * Response
- *
  * @ApiResource()
  * @ORM\Table(name="response")
  * @ORM\Entity(repositoryClass="App\Repository\ResponseRepository")
@@ -30,15 +28,14 @@ class Response
     private $text;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Question", inversedBy="reponses", cascade={"persist"})
-     * @ORM\JoinColumn(name="id", referencedColumnName="id", onDelete="SET NULL")
-     * @ApiSubresource()
+     * @ORM\ManyToOne(targetEntity="App\Entity\Question", inversedBy="responses")
+     * @ORM\JoinTable(name="question")
      */
     private $question;
 
     /**
-     * @ORM\OneToMany(targetEntity="Question", mappedBy="response")
-     * @ORM\Column(type="json_array")
+     * @ORM\OneToOne(targetEntity="App\Entity\Question", cascade={"persist", "remove"})
+     * @ORM\JoinTable(name="question")
      */
     private $child;
 
@@ -59,24 +56,24 @@ class Response
         return $this;
     }
 
-    public function getQuestion(): ?int
+    public function getQuestion(): ?Question
     {
         return $this->question;
     }
 
-    public function setQuestion(int $question): self
+    public function setQuestion(?Question $question): self
     {
         $this->question = $question;
 
         return $this;
     }
 
-    public function getChild()
+    public function getChild(): ?Question
     {
         return $this->child;
     }
 
-    public function setChild($child): self
+    public function setChild(?Question $child): self
     {
         $this->child = $child;
 

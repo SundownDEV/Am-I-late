@@ -5,7 +5,7 @@ install:
 	npm install;
 
 api-start:
-	bin/console server:start *:3000;
+	bin/console server:start *:8000;
 
 api-stop:
 	bin/console server:stop;
