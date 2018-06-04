@@ -19,11 +19,11 @@ class App extends Component {
       }))
   }
 
-  fetchOptions() {
-    axios.get('https://jsonplaceholder.typicode.com/posts/1')
+  fetchOptions(id) {
+    axios.get('http://localhost/questions/'+ id)
     .then(((t) => {
         this.setState(prevState => ({
-            currentOptionsState: [...prevState.currentOptionsState, t.data.title]
+            currentOptionsState: [...prevState.currentOptionsState, t.data.responses]
         }))
     }))
   }
