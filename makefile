@@ -1,4 +1,4 @@
-.PHONY: install api-start api-stop front-watch front-build front-build-prod
+.PHONY: install api-start api-stop front-build front-run
 
 install:
 	composer install;
@@ -10,14 +10,8 @@ api-start:
 api-stop:
 	bin/console server:stop;
 
-front-watch:
-	./node_modules/.bin/encore dev --watch;
-
 front-build:
-	./node_modules/.bin/encore dev;
-
-front-build-prod:
-	./node_modules/.bin/encore production;
+	cd client && npm run build;
 
 front-run:
 	cd client && npm start;
