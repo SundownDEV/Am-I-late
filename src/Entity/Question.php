@@ -47,19 +47,18 @@ class Question
      */
     private $responses;
 
-    public function __construct(TestSerializer $testSerializer)
+    public function __construct()
     {
         $this->responses = new ArrayCollection();
         $this->date = new \DateTime();
-        $this->testSerializer = $testSerializer;
     }
 
-    public function __invoke(Question $question): Question
+    /*public function __invoke(Question $question): Question
     {
         $this->testSerializer->test();
 
         return $question;
-    }
+    }*/
 
     public function getId()
     {
