@@ -39,3 +39,9 @@ Build assets
 ~~~
 make front-build
 ~~~
+
+Load test data fixtures
+
+~~~
+php bin/console doctrine:fixture:load
+~~~
