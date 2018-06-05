@@ -12,11 +12,8 @@ namespace App\DataFixtures;
 
 use App\Entity\Question;
 use App\Entity\Response;
-use App\Repository\ResponseRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\Common\DataFixtures\FixtureInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class AppFixtures extends Fixture
