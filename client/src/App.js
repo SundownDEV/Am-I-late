@@ -7,73 +7,86 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentOptionsState: ["test"],
-      pastOptions: [],
-      score: 0
-    }
+      currentResponses: [],
+      currentQuestion: "zfz",
+      pastQuestion: null,
+      pastResponse: null,
+      score: 0,
+        start: true,
+        baseRoute: "http://localhost:8000"
+    };
+    this.fetchQuestion = this.fetchQuestion.bind(this);
+    this.fetchResponses = this.fetchResponses.bind(this);
   }
 
   _handleClick(element) {
-      this.setState(prevState => ({
-          pastOptions: [...prevState.pastOptions, element]
-      }))
+    this.setState({
+        pastQuestion: element.question ,
+        pastResponse: element.text,
+        score: this.state.score+1
+    });
+  this.fetchQuestion(this.state.baseRoute + element.child);
+  this.fetchResponses(this.state.baseRoute + element.child+"/responses");
   }
 
-  fetchOptions() {
-    axios.get('https://jsonplaceholder.typicode.com/posts/1')
-    .then(((t) => {
-        this.setState(prevState => ({
-            currentOptionsState: [...prevState.currentOptionsState, t.data.title]
-        }))
+  fetchQuestion(url) {
+    axios.get(url)
+    .then(((data) => {
+        this.setState({
+          currentQuestion: data.text
+        })
     }))
+        .catch(error => console.log(error));
   }
+
+  fetchResponses(id) {
+      axios.get('http://localhost:8000/questions/'+ id +'responses')
+          .then(((data) => {
+              this.setState({
+                  currentResponses : data
+              })
+          }))
+    }
 
   componentWillMount(){
-    this.fetchOptions()
+      if(this.state.start) {
+          this.fetchQuestion("http://localhost:8000/questions/0");
+          this.fetchResponses(0);
+          this.setState ({
+              start: null
+          })
+      }
   }
-
-  headerRendering() {
-
-    let headerPast = [];
-
-    for(let i = 0; i<this.state.pastOptions-1; i++) {
-      headerPast.push (
-        <div className="headerPast">
-        <h3 className="currentOption">
-        {this.state.pastOptions[i]}
-      </h3>
-      <h4 className="currentOption">
-      {this.state.pastOptions[i+1]}
-      </h4>
-      </div>
-      )
-    }
-    return headerPast
-  }
-
 
   render() {
-    let currentOptions = this.state.currentOptionsState.map(((element, index) => (
-        <div key={index} className="currentOption btn btn-default btn-lg btn-block text-left" onClick={this._handleClick.bind(this, element)}>
-        <h3 className="currentOption_element">
-          {element}
-        </h3>
-        </div>
+    let currentOptions = this.state.currentResponses.map(((element, index) => (
+      <p key={index}><a class="btn btn-default btn-lg btn-block text-left" onClick={this._handleClick.bind(this, element)}>{element.text}</a></p>
     )));
+
+    let header = (
+      <div class="jumbotron">
+					<h3>{this.state.pastQuestion}<br/>
+					<small>→ {this.state.pastResponse}</small></h3>
+				</div>
+    );
   
     return (
       <div className="App container">
+      <h1>Am I late ?</h1>
         <header className="App_header">
-        {this.state.pastOptions ? this.headerRendering() : null}
+        {this.state.pastQuestion ? header : null}
 
         </header>
+        <div className="jumbotron">
         <div className="currentSection vertical-center container">
-          <h1 className="currentState">{}</h1>
+          <h1 className="currentState">{this.state.currentQuestion}</h1>
           <h2 className="currentQuestion">Je fais quoi ?</h2>
           <div className="currentOptions">
-            {this.state.currentOptionsState ? currentOptions : null}
+            {this.state.currentResponses ? currentOptions : null}
           </div>
       </div>
+      </div>
+      Votre score : {this.state.score}
       </div>
     );
   }

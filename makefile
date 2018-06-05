@@ -14,4 +14,4 @@ front-build:
 	cd client && npm run build;
 
 front-run:
-	cd client && npm start;
+	npm start;
