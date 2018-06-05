@@ -37,7 +37,7 @@ class Response
     private $question;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Question", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Question", cascade={"persist", "remove"})
      * @ORM\JoinTable(name="question")
      * @ApiSubresource()
      */
