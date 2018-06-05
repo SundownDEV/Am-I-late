@@ -12,7 +12,8 @@ class App extends Component {
       pastQuestion: null,
       pastResponse: null,
       score: 0,
-        start: true
+        start: true,
+        baseRoute: "http://localhost:8000"
     };
     this.fetchQuestion = this.fetchQuestion.bind(this);
     this.fetchResponses = this.fetchResponses.bind(this);
@@ -21,10 +22,11 @@ class App extends Component {
   _handleClick(element) {
     this.setState({
         pastQuestion: element.question ,
-        pastResponse: element.text
+        pastResponse: element.text,
+        score: this.state.score+1
     });
-  this.fetchQuestion(element.child);
-  this.fetchResponses(element.child+"/responses");
+  this.fetchQuestion(this.state.baseRoute + element.child);
+  this.fetchResponses(this.state.baseRoute + element.child+"/responses");
   }
 
   fetchQuestion(url) {
