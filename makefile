@@ -20,4 +20,4 @@ front-build-prod:
 	./node_modules/.bin/encore production;
 
 front-run:
-	cd client && npm start;
+	npm start;
