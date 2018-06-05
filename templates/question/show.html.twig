@@ -1,15 +1,17 @@
-<!DOCTYPE html>
+{% extends 'base.html.twig' %}
 
-<title>Question</title>
+{% block title %}Question{% endblock %}
 
 {% block body %}
-    <h1>Question</h1>
-
     <table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ question.id }}</td>
+            </tr>
+            <tr>
+                <th>Sticker</th>
+                <td><img src="{{ question.sticker }}" alt=""></td>
             </tr>
             <tr>
                 <th>Text</th>
@@ -25,6 +27,8 @@
     <a href="{{ path('question_index') }}">back to list</a>
 
     <a href="{{ path('question_edit', {'id': question.id}) }}">edit</a>
+
+    <hr>
 
     {{ include('question/_delete_form.html.twig') }}
 {% endblock %}
