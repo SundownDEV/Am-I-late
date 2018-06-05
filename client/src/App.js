@@ -50,8 +50,11 @@ class App extends Component {
 
   componentWillMount(){
       if(this.state.start === true) {
-          this.fetchQuestion(this.state.baseRoute+"/questions/1");
-          this.fetchResponses(this.state.baseRoute+"/questions/1/responses");
+        axios.get(this.state.baseRoute+"/questions")
+    .then(((data) => {
+      this.fetchQuestion(this.state.baseRoute+"/questions/"+data.data[0].id);
+      this.fetchResponses(this.state.baseRoute+"/questions/"+data.data[0].id+"/responses");
+    }))
           this.setState ({
               start: false
           })
