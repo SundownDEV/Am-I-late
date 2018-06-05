@@ -8,7 +8,7 @@ class App extends Component {
     super(props);
     this.state = {
       currentResponses: [],
-      currentQuestion: "zfz",
+      currentQuestion: "",
       pastQuestion: null,
       pastResponse: null,
       score: 0,
@@ -21,7 +21,7 @@ class App extends Component {
 
   _handleClick(element) {
     this.setState({
-        pastQuestion: element.question ,
+        pastQuestion: this.state.currentQuestion ,
         pastResponse: element.text,
         score: this.state.score+1
     });
@@ -33,38 +33,38 @@ class App extends Component {
     axios.get(url)
     .then(((data) => {
         this.setState({
-          currentQuestion: data.text
+          currentQuestion: data.data.text
         })
     }))
         .catch(error => console.log(error));
   }
 
-  fetchResponses(id) {
-      axios.get('http://localhost:8000/questions/'+ id +'responses')
+  fetchResponses(url) {
+      axios.get(url)
           .then(((data) => {
               this.setState({
-                  currentResponses : data
+                 currentResponses : data.data
               })
           }))
     }
 
   componentWillMount(){
-      if(this.state.start) {
-          this.fetchQuestion("http://localhost:8000/questions/0");
-          this.fetchResponses(0);
+      if(this.state.start === true) {
+          this.fetchQuestion(this.state.baseRoute+"/questions/1");
+          this.fetchResponses(this.state.baseRoute+"/questions/1/responses");
           this.setState ({
-              start: null
+              start: false
           })
       }
   }
 
   render() {
-    let currentOptions = this.state.currentResponses.map(((element, index) => (
-      <p key={index}><a class="btn btn-default btn-lg btn-block text-left" onClick={this._handleClick.bind(this, element)}>{element.text}</a></p>
-    )));
+    let currentOptions = this.state.currentResponses.map((element, index) => (
+      <p key={index}><a className="btn btn-default btn-lg btn-block text-left" onClick={this._handleClick.bind(this, element)}>{element.text}</a></p>
+    ));
 
     let header = (
-      <div class="jumbotron">
+      <div className="jumbotron">
 					<h3>{this.state.pastQuestion}<br/>
 					<small>→ {this.state.pastResponse}</small></h3>
 				</div>
