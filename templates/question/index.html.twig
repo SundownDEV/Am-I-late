@@ -1,10 +1,8 @@
-<!DOCTYPE html>
+{% extends 'base.html.twig' %}
 
-<title>Question index</title>
+{% block title %}Question index{% endblock %}
 
 {% block body %}
-    <h1>Question index</h1>
-
     <table class="table">
         <thead>
             <tr>
@@ -32,6 +30,8 @@
         {% endfor %}
         </tbody>
     </table>
+
+    <hr>
 
     <a href="{{ path('question_new') }}">Create new</a>
 {% endblock %}
