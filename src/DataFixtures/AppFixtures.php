@@ -35,6 +35,7 @@ class AppFixtures extends Fixture
         foreach ($this->getData() as $data) {
             $question = new Question();
             $question->setText($data['text']);
+            $question->setSticker($this->getRandomSticker());
             $manager->persist($question);
 
             foreach ($data['responses'] as $response) {
@@ -77,5 +78,21 @@ class AppFixtures extends Fixture
                 ]
             ]
         ];
+    }
+
+    private function getStickersData()
+    {
+        return [
+            'http://image.noelshack.com/fichiers/2017/30/4/1501188178-jesusbestreup.png',
+        ];
+    }
+
+    private function getRandomSticker(): string
+    {
+        $stickers = $this->getStickersData();
+        shuffle($stickers);
+        $selectedSticker = array_slice($stickers, 0, 1);
+
+        return array_shift($selectedSticker);
     }
 }
