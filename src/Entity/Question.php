@@ -42,6 +42,11 @@ class Question
      */
     private $responses;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $sticker;
+
     public function __construct()
     {
         $this->responses = new ArrayCollection();
@@ -116,6 +121,18 @@ class Question
                 $response->setQuestion(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSticker(): ?string
+    {
+        return $this->sticker;
+    }
+
+    public function setSticker(?string $sticker): self
+    {
+        $this->sticker = $sticker;
 
         return $this;
     }
