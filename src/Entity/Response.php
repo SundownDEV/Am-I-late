@@ -9,7 +9,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     collectionOperations={"get"={"method"="GET"}},
+ *     itemOperations={"get"={"method"="GET"}}
+ * )
  * @ORM\Table(name="response")
  * @ORM\Entity(repositoryClass="App\Repository\ResponseRepository")
  */
@@ -36,6 +39,7 @@ class Response
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Question", cascade={"persist", "remove"})
      * @ORM\JoinTable(name="question")
+     * @ApiSubresource()
      */
     private $child;
 
