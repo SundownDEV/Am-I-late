@@ -43,7 +43,9 @@ class App extends Component {
 
     closeModal() {
         this.setState({
+            pastQuestion: null,
             modalIsOpen: false,
+            pastResponse: null,
             start: true,
             score: 0
         });
@@ -56,8 +58,7 @@ class App extends Component {
     }
 
   _handleClick(element) {
-    console.log(element.child +"   "+this.state.currentQuestion);
-    if(element.child !== this.state.currentQuestion || element.child !== null || element.child !== undefined) {
+    if(element.child !== element.question) {
     this.setState({
         pastQuestion: this.state.currentQuestion ,
         pastResponse: element.text,
@@ -140,7 +141,7 @@ class App extends Component {
           <div className="jumbotron">
               <div className="currentSection vertical-center container">
           <h1 className="currentState">{this.state.currentQuestion}</h1>
-          <img src={this.state.currentSticker} height="42" width="42" />
+          <img src={this.state.currentSticker} height="92" width="92" />
           <div className="currentOptions">
             {this.state.currentResponses ? currentOptions : null}
           </div>
