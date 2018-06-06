@@ -8,7 +8,8 @@
             <tr>
                 <th>Id</th>
                 <th>Text</th>
-                <th>actions</th>
+                <th>Question</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -16,9 +17,10 @@
             <tr>
                 <td>{{ response.id }}</td>
                 <td>{{ response.text }}</td>
+                <td>{{ response.question }}</td>
                 <td>
-                    <a href="{{ path('response_show', {'id': response.id}) }}">show</a>
-                    <a href="{{ path('response_edit', {'id': response.id}) }}">edit</a>
+                    <a href="{{ path('response_show', {'id': response.id}) }}">Afficher</a>
+                    <a href="{{ path('response_edit', {'id': response.id}) }}" class="btn btn-primary btn-xs">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -29,5 +31,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('response_new') }}">Create new</a>
+    <a href="{{ path('response_new') }}" class="btn btn-primary">Create new</a>
 {% endblock %}

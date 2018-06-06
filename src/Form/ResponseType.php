@@ -12,9 +12,15 @@ class ResponseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('text')
-            ->add('question')
-            ->add('child')
+            ->add('text', null, [
+                'attr' => ['class' => 'form-control'],
+            ])
+            ->add('question', null, [
+                'attr' => ['class' => 'form-control'],
+            ])
+            ->add('child', null, [
+                'attr' => ['class' => 'form-control'],
+            ])
         ;
     }
 

@@ -11,7 +11,10 @@ use ApiPlatform\Core\Annotation\ApiSubresource;
 /**
  * @ApiResource(
  *     collectionOperations={"get"={"method"="GET"}},
- *     itemOperations={"get"={"method"="GET"}}
+ *     itemOperations={
+ *          "get"={"method"="GET"},
+ *          "special"={"route_name"="api_questions_first"}
+ *     }
  * )
  * @ORM\Table(name="question")
  * @ORM\Entity(repositoryClass="App\Repository\QuestionRepository")
@@ -53,13 +56,6 @@ class Question
         $this->date = new \DateTime();
     }
 
-    /*public function __invoke(Question $question): Question
-    {
-        $this->testSerializer->test();
-
-        return $question;
-    }*/
-
     public function __toString()
     {
         return $this->getText();
@@ -70,7 +66,7 @@ class Question
         return $this->id;
     }
 
-    public function getText(): ?string
+    public function getText(): string
     {
         return $this->text;
     }
