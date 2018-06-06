@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import '../styles/App.css';
 import Modal from 'react-modal';
+import Sound from 'react-sound';
+
 
 const customStyles = {
     content : {
@@ -121,6 +123,13 @@ class App extends Component {
   
     return (
       <div className="App container">
+      <Sound
+      url=""
+      playStatus={Sound.status.PLAYING}
+      playFromPosition={0}
+      volume={55}
+      loop={true}
+    />
           <Modal
               isOpen={this.state.modalIsOpen}
               onAfterOpen={this.afterOpenModal}
