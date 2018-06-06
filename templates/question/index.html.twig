@@ -17,10 +17,10 @@
             <tr>
                 <td>{{ question.id }}</td>
                 <td>{{ question.text }}</td>
-                <td>{{ question.date ? question.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ question.date ? question.date|date('d/m/Y à H:i') : '' }}</td>
                 <td>
-                    <a href="{{ path('question_show', {'id': question.id}) }}">show</a>
-                    <a href="{{ path('question_edit', {'id': question.id}) }}">edit</a>
+                    <a href="{{ path('question_show', {'id': question.id}) }}">Afficher</a>
+                    <a href="{{ path('question_edit', {'id': question.id}) }}" class="btn btn-primary">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -33,5 +33,5 @@
 
     <hr>
 
-    <a href="{{ path('question_new') }}">Create new</a>
+    <a href="{{ path('question_new') }}" class="btn btn-primary">Create new</a>
 {% endblock %}
