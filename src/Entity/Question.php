@@ -7,11 +7,15 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
+use App\Service\QuestionAPI;
 
 /**
  * @ApiResource(
  *     collectionOperations={"get"={"method"="GET"}},
- *     itemOperations={"get"={"method"="GET"}}
+ *     itemOperations={
+ *          "get"={"method"="GET"},
+ *          "special"={"route_name"="api_questions_first", "requirements"={}}
+ *     }
  * )
  * @ORM\Table(name="question")
  * @ORM\Entity(repositoryClass="App\Repository\QuestionRepository")
@@ -52,13 +56,6 @@ class Question
         $this->responses = new ArrayCollection();
         $this->date = new \DateTime();
     }
-
-    /*public function __invoke(Question $question): Question
-    {
-        $this->testSerializer->test();
-
-        return $question;
-    }*/
 
     public function __toString()
     {
