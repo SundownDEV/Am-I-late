@@ -50,11 +50,11 @@ class App extends Component {
             score: 0
         });
 
-        axios.get(this.state.baseRoute+"/questions" +"?q="+new Date().getTime())
-            .then(((data) => {
-                this.fetchQuestion(this.state.baseRoute+"/questions/"+data.data[0].id);
-                this.fetchResponses(this.state.baseRoute+"/questions/"+data.data[0].id+"/responses");
-            }));
+        axios.get(this.state.baseRoute + "/questions/first"+ "?q=" + new Date().getTime())
+                        .then(((data) => {
+                            this.fetchQuestion(this.state.baseRoute+"/questions/"+data.data[0].id);
+                            this.fetchResponses(this.state.baseRoute + "/questions/" + data.data[0].id + "/responses");
+                        }))
     }
 
   _handleClick(element) {
@@ -74,7 +74,7 @@ class App extends Component {
   }
 
   fetchQuestion(url) {
-    axios.get(url +"?q="+new Date().getTime())
+    axios.get(url)
     .then(((data) => {
       console.log(data.data);
         this.setState({
@@ -86,7 +86,7 @@ class App extends Component {
   }
 
   fetchResponses(url) {
-      axios.get(url +"?q="+new Date().getTime())
+      axios.get(url)
           .then(((data) => {
               this.setState({
                  currentResponses : data.data
@@ -94,18 +94,18 @@ class App extends Component {
           }))
     }
 
-  componentWillMount(){
-      if(this.state.start === true) {
-        axios.get(this.state.baseRoute+"/questions" +"?q="+new Date().getTime())
-    .then(((data) => {
-      this.fetchQuestion(this.state.baseRoute+"/questions/"+data.data[0].id);
-      this.fetchResponses(this.state.baseRoute+"/questions/"+data.data[0].id+"/responses");
-    }));
-          this.setState ({
-              start: false
-          })
-      }
-  }
+    componentWillMount() {
+        if (this.state.start === true) {
+                    axios.get(this.state.baseRoute + "/questions/first"+ "?q=" + new Date().getTime())
+                        .then(((data) => {
+                            this.fetchQuestion(this.state.baseRoute+"/questions/"+data.data[0].id);
+                            this.fetchResponses(this.state.baseRoute + "/questions/" + data.data[0].id + "/responses");
+                        }))
+                this.setState({
+                    start: false
+                })
+        }
+    }
 
   render() {
     let currentOptions = this.state.currentResponses.map((element, index) => (
