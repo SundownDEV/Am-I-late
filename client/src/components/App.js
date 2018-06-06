@@ -50,7 +50,7 @@ class App extends Component {
             score: 0
         });
 
-        axios.get(this.state.baseRoute+"/questions")
+        axios.get(this.state.baseRoute+"/questions" +"?q="+new Date().getTime())
             .then(((data) => {
                 this.fetchQuestion(this.state.baseRoute+"/questions/"+data.data[0].id);
                 this.fetchResponses(this.state.baseRoute+"/questions/"+data.data[0].id+"/responses");
@@ -74,7 +74,7 @@ class App extends Component {
   }
 
   fetchQuestion(url) {
-    axios.get(url)
+    axios.get(url +"?q="+new Date().getTime())
     .then(((data) => {
       console.log(data.data);
         this.setState({
@@ -86,7 +86,7 @@ class App extends Component {
   }
 
   fetchResponses(url) {
-      axios.get(url)
+      axios.get(url +"?q="+new Date().getTime())
           .then(((data) => {
               this.setState({
                  currentResponses : data.data
@@ -96,7 +96,7 @@ class App extends Component {
 
   componentWillMount(){
       if(this.state.start === true) {
-        axios.get(this.state.baseRoute+"/questions")
+        axios.get(this.state.baseRoute+"/questions" +"?q="+new Date().getTime())
     .then(((data) => {
       this.fetchQuestion(this.state.baseRoute+"/questions/"+data.data[0].id);
       this.fetchResponses(this.state.baseRoute+"/questions/"+data.data[0].id+"/responses");
@@ -142,7 +142,7 @@ class App extends Component {
               <div className="currentSection vertical-center container">
           <h1 className="currentState">{this.state.currentQuestion}</h1>
             {this.state.currentSticker ? 
-          <img src={this.state.currentSticker} height="92" width="92" />
+          <img src={this.state.currentSticker} />
           : null}
           <div className="currentOptions">
             {this.state.currentResponses ? currentOptions : null}
