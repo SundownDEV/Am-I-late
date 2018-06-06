@@ -144,8 +144,7 @@ class App extends Component {
           <h1 className="currentState">{this.state.currentQuestion}</h1>
             {this.state.currentSticker ? 
           <img src={this.state.currentSticker} height="92" width="92" />
-          :null}
-          <h2 className="currentQuestion">Je fais quoi ?</h2>
+          : null}
           <div className="currentOptions">
             {this.state.currentResponses ? currentOptions : null}
           </div>
