@@ -53,27 +53,27 @@ class AppFixtures extends Fixture
     {
         return [
             [
-                "text" => "ma question 1",
+                "text" => "2 gilberts arrivent, je fais quoi ?",
                 "responses" => [
                     [
-                        "text" => "option1",
+                        "text" => "Je fais ci",
                     ],
                     [
-                        "text" => "option2",
+                        "text" => "Je fais ça",
                     ],
                 ]
             ],
             [
-                "text" => "ma question 2",
+                "text" => "olala VM inc",
                 "responses" => [
                     [
-                        "text" => "option1",
+                        "text" => "j'abandonne",
                     ],
                     [
-                        "text" => "option2",
+                        "text" => "oui",
                     ],
                     [
-                        "text" => "option3",
+                        "text" => "non",
                     ],
                 ]
             ]
@@ -84,6 +84,10 @@ class AppFixtures extends Fixture
     {
         return [
             'http://image.noelshack.com/fichiers/2017/30/4/1501188178-jesusbestreup.png',
+            'https://risibank.fr/cache/stickers/d1/188-static.png',
+            'https://risibank.fr/cache/stickers/d325/32563-static.png',
+            'https://risibank.fr/cache/stickers/d456/45638-static.png',
+            'https://risibank.fr/cache/stickers/d341/34135-static.png',
         ];
     }
 

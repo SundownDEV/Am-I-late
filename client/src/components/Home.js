@@ -5,14 +5,21 @@ class Home extends Component {
 
     render() {
         return (
-            <div className="App">
-                <h2 className="App_intro">You are Ariel, a teacher at <strong>HETIC</strong>. < br />
-                    You had a class at <strong>9 AM</strong> but you're late. So late.< br />
-                    You get out of the bed, it's half past 9.< br />
+            <div className="App home">
+                <div className="App_box">
+                    <h1 className="App_intro" style={{textAlign:'center'}}>Am I late ?</h1>
 
-                    You have to get into the class before <strong>10 AM</strong>.< br />
+                    <h2 className="App_intro">
+                        <p>You are Ariel, a teacher at <strong>HETIC</strong>.</p>
+                        <p>You had a class at <strong>9 AM</strong> but you're late. So late.</p>
+                        <p>It's time to get out of the bed, it's half past 9.</p>
+                        <p>You have to get into the class before <strong>10 AM</strong>.</p>
+                        <p>Welcome to the grind.</p>
                     </h2>
-                <a href="/app" className="btn_app"><strong>Welcome to the grind</strong></a>
+                    <div>
+                        <a href="/app" className="btn_app"><strong>Start playing now</strong></a>
+                    </div>
+                </div>
             </div>
         )
     }
