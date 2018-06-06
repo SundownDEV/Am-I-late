@@ -14,9 +14,9 @@ services:
         build: ./docker/php-fpm
         ports:
             - "9001:9000"
-        #volumes:
-        #    - ./symfony:/var/www/symfony:cached
-        #    - ./logs/symfony:/var/www/symfony/var/logs:cached
+        volumes:
+            - ./symfony:/var/www/symfony:cached
+            - ./logs/symfony:/var/www/symfony/var/logs:cached
         links:
             - db
     nginx:
@@ -48,6 +48,6 @@ services:
           - '.:/usr/src/app'
           - '/usr/src/app/node_modules'
         ports:
-          - '3000:3000'
+          - '3001:3000'
         environment:
           - NODE_ENV=development
