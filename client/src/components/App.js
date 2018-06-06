@@ -133,22 +133,20 @@ class App extends Component {
                   </button>
               <h5 className="scoreTitle">Your score is {this.state.score}</h5>
           </Modal>
-      <h1>Am I late ?</h1>
         <header className="App_header">
-        {this.state.pastQuestion ? header : null}
-
+            {this.state.pastQuestion ? header : null}
+            <h1>Am I late ?</h1>
         </header>
-        <div className="jumbotron">
-        <div className="currentSection vertical-center container">
+          <div className="jumbotron">
+              <div className="currentSection vertical-center container">
           <h1 className="currentState">{this.state.currentQuestion}</h1>
           <img src={this.state.currentSticker} height="42" width="42" />
-          <h2 className="currentQuestion">Je fais quoi ?</h2>
           <div className="currentOptions">
             {this.state.currentResponses ? currentOptions : null}
           </div>
-      </div>
-      </div>
-      Votre score : {this.state.score}
+            <p>Votre score : {this.state.score}</p>
+        </div>
+        </div>
       </div>
     );
   }
