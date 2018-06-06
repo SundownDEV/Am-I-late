@@ -1,8 +1,17 @@
+.App.home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.App.home .App_box {
+    max-width: 50%;
+}
+
 .App_intro {
     line-height: 1.25em;
     text-align: left;
-    display: inline-block;
-    margin-top: 33vh;
+    display: block;
     text-decoration: none;
 }
 
