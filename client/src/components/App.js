@@ -141,7 +141,7 @@ class App extends Component {
         <div className="jumbotron">
         <div className="currentSection vertical-center container">
           <h1 className="currentState">{this.state.currentQuestion}</h1>
-          <img src={this.state.currentSticker} height="42" width="42" />
+          <img src={this.state.currentSticker} height="92" width="92" />
           <h2 className="currentQuestion">Je fais quoi ?</h2>
           <div className="currentOptions">
             {this.state.currentResponses ? currentOptions : null}
