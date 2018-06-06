@@ -7,14 +7,13 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
-use App\Service\QuestionAPI;
 
 /**
  * @ApiResource(
  *     collectionOperations={"get"={"method"="GET"}},
  *     itemOperations={
  *          "get"={"method"="GET"},
- *          "special"={"route_name"="api_questions_first", "requirements"={}}
+ *          "special"={"route_name"="api_questions_first"}
  *     }
  * )
  * @ORM\Table(name="question")
