@@ -65,7 +65,7 @@ class App extends Component {
         score: this.state.score+1
     });
       this.fetchQuestion(this.state.baseRoute + element.child);
-  this.fetchResponses(this.state.baseRoute + element.child+"/responses");
+      this.fetchResponses(this.state.baseRoute + element.child+"/responses");
     } else {
       this.setState({
           modalIsOpen: true
@@ -141,6 +141,7 @@ class App extends Component {
           <div className="jumbotron">
               <div className="currentSection vertical-center container">
           <h1 className="currentState">{this.state.currentQuestion}</h1>
+            {this.state.currentSticker ? 
           <img src={this.state.currentSticker} height="92" width="92" />
           <div className="currentOptions">
             {this.state.currentResponses ? currentOptions : null}
