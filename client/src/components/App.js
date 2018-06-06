@@ -124,7 +124,7 @@ class App extends Component {
     return (
       <div className="App container">
       <Sound
-      url=""
+      url="/music.mp3"
       playStatus={Sound.status.PLAYING}
       playFromPosition={0}
       volume={55}
