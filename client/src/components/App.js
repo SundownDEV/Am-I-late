@@ -140,9 +140,9 @@ class App extends Component {
         </header>
           <div className="jumbotron">
               <div className="currentSection vertical-center container">
-          <h1 className="currentState">{this.state.currentQuestion}</h1>
+          <h2 className="currentState">{this.state.currentQuestion}</h2>
             {this.state.currentSticker ? 
-          <img src={this.state.currentSticker} />
+          <img src={this.state.currentSticker} style={{margin:'25px 0'}} />
           : null}
           <div className="currentOptions">
             {this.state.currentResponses ? currentOptions : null}
