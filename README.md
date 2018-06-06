@@ -10,14 +10,24 @@ Rise and shine, 9 AM and your hand can't make it to the alarm clock before the v
 
 You have to get into the class **before** 10 AM. Welcome to the grind.
 
-<p align="center"><img src="./docs/plan.jpeg" /></p>
+<p align="center">
+  <img src="./docs/plan.jpeg" alt="" />
+</p>
 
-## Installation
+## Installation (manual)
 
 ~~~
 $ git clone https://github.com/SundownDEV/Am-I-late
 $ cd Am-I-late/
-$ composer install && npm install
+$ make install
+~~~
+
+## Installation (docker)
+
+~~~
+$ git clone https://github.com/SundownDEV/Am-I-late
+$ cd Am-I-late/
+$ docker-compose up
 ~~~
 
 ## Usage
