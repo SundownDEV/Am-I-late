@@ -22,14 +22,13 @@ class QuestionRepository extends ServiceEntityRepository
     /**
      * @return Question[] Returns an array of Question objects
      */
-    public function findByToken($token)
+    public function findFirst()
     {
         return $this->createQueryBuilder('q')
-            ->andWhere('q.token = :token')
-            ->setParameter('token', $token)
+            ->orderBy('q.id', 'ASC')
             ->setMaxResults(1)
             ->getQuery()
-            ->getResult()
+            ->getArrayResult()
         ;
     }
 
