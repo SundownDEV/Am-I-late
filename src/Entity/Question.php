@@ -39,7 +39,7 @@ class Question
     private $date;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Response", mappedBy="question")
+     * @ORM\OneToMany(targetEntity="App\Entity\Response", mappedBy="question", orphanRemoval=true, cascade={"persist", "remove", "merge"})
      * @ORM\JoinTable(name="response")
      * @ApiSubresource()
      */
@@ -66,7 +66,7 @@ class Question
         return $this->id;
     }
 
-    public function getText(): string
+    public function getText(): ?string
     {
         return $this->text;
     }
